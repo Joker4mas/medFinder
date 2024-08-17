@@ -1,6 +1,6 @@
 // import Image from 'next-/Image';
 import { useState } from "react";
-import Image from "next/Image";
+import Image from "next/image";
 import GoogleImage from "../images/google-maps.svg";
 
 interface HospitalCardProps {
