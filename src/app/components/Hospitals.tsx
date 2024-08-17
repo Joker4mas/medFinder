@@ -172,11 +172,11 @@ const Hospitals: React.FC = () => {
         </p>
 
         <div className="gap-4">
-          <button className="btn btn-secondary" onClick={handleShare}>
+          <button className="btn btn-secondary my-2 md:my-0" onClick={handleShare}>
             Share Selected Provider
           </button>
 
-          <button className="btn btn-secondary mx-4">
+          <button className="btn btn-secondary mx-2">
             <CSVLink data={filteredProviders}>Export to CSV</CSVLink>
           </button>
         </div>

@@ -1,7 +1,7 @@
 // import Image from 'next-/Image';
 import { useState } from "react";
 import Image from "next/Image";
-import GoogleImage from "@/app/images/google-maps.svg";
+import GoogleImage from "../images/google-maps.svg";
 
 interface HospitalCardProps {
   name: string;
@@ -37,8 +37,8 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
   };
 
   return (
-    <div className="max-w-sm p-4 flex flex-col justify-between items-center border border-gray-200 rounded-lg hover:bg-gray-300 dark:bg-blue-gray-50">
-      <div className="flex flex-end my-4 ml-0">
+    <div className="max-w-sm p-2 gap-4 flex flex-col mx-auto max-h-42  border border-gray-200 rounded-lg hover:bg-gray-300 dark:bg-blue-gray-50">
+      <div className="flex items-end my-2">
         <button onClick={handleOpenGoogleMaps}>
           <Image
             src={GoogleImage}
@@ -50,11 +50,11 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
         </button>
       </div>
 
-      <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-800 dark:text-gray-400">
+      <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-600 dark:text-gray-400">
         {name}
       </h5>
 
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">
+      <p className="mb-2 font-normal text-gray-700 dark:text-gray-300">
         {address}
       </p>
 
@@ -62,9 +62,9 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
         {phone_number}
       </p> */}
 
-      <div className="flex dark:border border-green-200">
+      <div className="">
         <button
-          className="inline-flex items-center text-gray-800 hover:text-white dark:hover:border-green-200 "
+          className="inline-flex items-end text-gray-600 hover:text-green-400 hover:border-green-200  hover:border-2 my-1 rounded-md "
           onClick={copyToClipBoard}
         >
           {copied ? "copied" : "copy address"}
