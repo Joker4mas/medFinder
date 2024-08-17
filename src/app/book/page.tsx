@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@material-tailwind/react";
 
-const BookPage = () => {
+export default function BookPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,7 +38,8 @@ const BookPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg:dark">
-      <button
+    <div>
+    <button
         className="bg-red-400 p-2 text-white font-bold mx-24 "
         onClick={() => {
           signOut(auth);
@@ -47,6 +48,7 @@ const BookPage = () => {
       >
         Logout
       </button>
+    </div>
 
       <div className="bg-gray-700 p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-200">
@@ -166,4 +168,3 @@ const BookPage = () => {
   );
 };
 
-export default BookPage;
