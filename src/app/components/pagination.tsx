@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
           <button
             key={page}
             className={`btn ${
-              page === currentPage ? "bg-green-400" : "btn-minimal"
+              page === currentPage ? "btn-secondary" : "btn-minimal"
             }`}
             onClick={() => setCurrentPage(page)}
           >
