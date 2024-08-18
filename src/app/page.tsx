@@ -25,7 +25,7 @@ export default function Home() {
                 attention, a routine check-up, or specialized care, MedFinder is
                 here to guide you every step of the way.
               </p>
-              <button className="btn btn-primary"><Link href="/login">Book an Appointment</Link></button>
+              <button className="btn btn-success"><Link href="/login">Book an Appointment</Link></button>
             </div>
           </div>
           <div className="items-center md:mr-8">

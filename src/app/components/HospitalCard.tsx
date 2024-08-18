@@ -64,7 +64,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
 
       <div className="">
         <button
-          className="inline-flex items-end text-gray-600 hover:text-green-400 hover:border-green-200  hover:border-2 my-1 rounded-md "
+          className="inline-flex items-end text-gray-600 hover:text-green-400 hover:border-green-200 hover:border-2 my-1 rounded-md p-2"
           onClick={copyToClipBoard}
         >
           {copied ? "copied" : "copy address"}

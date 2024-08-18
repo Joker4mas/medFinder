@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({
   setCurrentPage,
 }) => {
   const totalPages = Math.ceil(totalPosts / postsPerPage);
-  const maxPages = 12;
+  const maxPages = 5;
   const maxPageHalf = Math.floor(maxPages / 2);
 
   let startPage = 1;
