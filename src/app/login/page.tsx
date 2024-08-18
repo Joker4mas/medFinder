@@ -27,7 +27,7 @@ const Login = () => {
       sessionStorage.setItem("user", "true");
       setEmail("");
       setPassword("");
-      router.push("/bookings");
+      router.push("/booking");
     } catch (e) {
       console.error(e);
     }
