@@ -176,7 +176,7 @@ const Hospitals: React.FC = () => {
             Share Selected Provider
           </button>
 
-          <button className="btn btn-secondary mx-2 text-black">
+          <button className="btn btn-success mx-2">
             <CSVLink data={filteredProviders}>Export to CSV</CSVLink>
           </button>
         </div>
