@@ -37,7 +37,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
   };
 
   return (
-    <div className="max-w-sm p-2 gap-4 flex flex-col mx-auto max-h-42  border border-gray-200 rounded-lg hover:bg-gray-300 dark:bg-blue-gray-50">
+    <div className="max-w-sm p-4 gap-4 flex flex-col mx-auto max-h-42  border border-gray-200 rounded-lg hover:bg-gray-300 dark:bg-blue-gray-50">
       <div className="flex items-end my-2">
         <button onClick={handleOpenGoogleMaps}>
           <Image
