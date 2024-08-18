@@ -29,7 +29,13 @@ const Booking = () => {
     console.log("Form data submitted:", formData);
   };
 
-
+  const [user] = useAuthState(auth);
+  const userSession = sessionStorage.getItem("user");
+  const router = useRouter();
+  
+  if (!user && !userSession) {
+    router.push("/");
+  }
 
   return (
     <>
