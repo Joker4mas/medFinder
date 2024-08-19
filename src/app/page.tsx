@@ -8,6 +8,7 @@ import Link from "next/link";
 import Hospitals from "./components/Hospitals";
 
 
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4">
@@ -87,7 +88,6 @@ export default function Home() {
     
     {/* <Hospitals/> */}
     <Hospitals />
-
 
       <section className="hero ">
         <div className="hero flex flex-col-reverse  md:flex-row bg-base-200 min-h-screen">

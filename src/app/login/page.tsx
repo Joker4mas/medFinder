@@ -6,11 +6,6 @@ import { auth, githubProvider, googleProvider } from "../config/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithPopup} from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-
-
-
-
 
 
 const Login = () => {
@@ -58,7 +53,7 @@ const Login = () => {
   return (
     <>
       <div className="">
-        <section className="bg-blueGray-50 my-8">
+        <section className="bg-Gray-50 my-8">
           <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 
             shadow-lg rounded-lg bg-blueGray-200 border-0">

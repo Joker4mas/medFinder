@@ -33,14 +33,24 @@ const Booking = () => {
   const userSession = sessionStorage.getItem("user");
   const router = useRouter();
   
+
   if (!user && !userSession) {
     router.push("/");
   }
 
+  // const handleLogout = () => {
+  //   signOut(auth);
+  //   sessionStorage.removeItem("user");
+  // };
+
+
+
   return (
     <>
       <div className="bg-gray-700 p-8 my-4  rounded shadow-md w-full max-w-md mx-auto">
+        
         <span className="mx-auto">
+
         <button
           className="bg-red-400 p-2 text-white font-bold rounded-md text-center"
           onClick={() => {
@@ -50,7 +60,7 @@ const Booking = () => {
         >
           Logout
         </button>
-          
+        
         </span>
 
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-200">
