@@ -1,25 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, githubProvider, googleProvider } from "../config/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithPopup} from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [createUserWithEmailAndPassword] =
-    useCreateUserWithEmailAndPassword(auth);
   const router = useRouter();
 
   const handleSingIn = async () => {
     try {
-      const res = await createUserWithEmailAndPassword(email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
       console.log({ res });
-      sessionStorage.setItem("user", "true");
+      sessionStorage.setItem("user", email);
       setEmail("");
       setPassword("");
       router.push("/booking");

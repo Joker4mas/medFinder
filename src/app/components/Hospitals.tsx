@@ -128,6 +128,7 @@ const Hospitals: React.FC = () => {
           </div>
 
           <input
+          data-id="search"
             type="search"
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-Grey/900 border border-Grey/600 rounded-lg bg-gray-50 focus:ring-Primary focus:border-Primary dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-Primary dark:focus:Primary"

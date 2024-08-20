@@ -4,8 +4,7 @@ import { auth } from "../config/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
-
-
+// import Dashboard from "../dashboard/page";
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -32,25 +31,15 @@ const Booking = () => {
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
   const router = useRouter();
-  
 
   if (!user && !userSession) {
     router.push("/");
   }
 
-  // const handleLogout = () => {
-  //   signOut(auth);
-  //   sessionStorage.removeItem("user");
-  // };
-
-
 
   return (
     <>
-      <div className="bg-gray-700 p-8 my-4  rounded shadow-md w-full max-w-md mx-auto">
-        
-        <span className="mx-auto">
-
+      <div className="flex p-4  mx-auto">
         <button
           className="bg-red-400 p-2 text-white font-bold rounded-md text-center"
           onClick={() => {
@@ -60,9 +49,13 @@ const Booking = () => {
         >
           Logout
         </button>
-        
-        </span>
 
+        
+
+
+
+
+      <div className="bg-gray-700 p-8 my-4  rounded shadow-md w-full max-w-md mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-200">
           Book a Medical Appointment
         </h2>
@@ -71,7 +64,7 @@ const Booking = () => {
             <label
               htmlFor="name"
               className="block text-sm font-medium text-gray-200"
-            >
+              >
               Name
             </label>
             <input
@@ -116,13 +109,13 @@ const Booking = () => {
               onChange={handleChange}
               required
               className="mt-1 p-2 w-full border border-gray-300 rounded  bg-gray-300 text-black"
-            />
+              />
           </div>
           <div className="mb-4">
             <label
               htmlFor="date"
               className="block text-sm font-medium text-gray-200"
-            >
+              >
               Date
             </label>
             <input
@@ -133,13 +126,13 @@ const Booking = () => {
               onChange={handleChange}
               required
               className="mt-1 p-2 w-full border border-gray-300 rounded  bg-gray-300 text-black"
-            />
+              />
           </div>
           <div className="mb-4">
             <label
               htmlFor="time"
               className="block text-sm font-medium text-gray-200"
-            >
+              >
               Time
             </label>
             <input
@@ -150,7 +143,7 @@ const Booking = () => {
               onChange={handleChange}
               required
               className="mt-1 p-2 w-full border border-gray-300 rounded  bg-gray-300 text-black"
-            />
+              />
           </div>
           <div className="mb-4">
             <label
@@ -171,13 +164,18 @@ const Booking = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            // onClick={() => {
+            //   signOut(auth);
+            //   sessionStorage.removeItem("user");
+            // }}
           >
             Submit
           </button>
         </form>
-      
       </div>
-      </>
+
+   </div>
+    </>
   );
 };
 

@@ -15,21 +15,21 @@ export default function Home() {
       
       <section className="hero ">
         <div className="hero flex flex-col-reverse  md:flex-row bg-base-200 min-h-screen">
-          <div className="hero-content flex-col lg:flex-row-reverse w-50">
+          <div data-id="hero-container" className="hero-content flex-col lg:flex-row-reverse w-50">
             <div>
-              <h1 className="text-5xl font-bold">
+              <h1 data-id="hero-header" className="text-5xl font-bold">
                 Discover Nearby Medical Facilities with MedFinder
               </h1>
-              <p className="py-12 ">
+              <p data-id="welcome-note" className="py-12 ">
                 Welcome to MedFinder, your trusted partner in locating the best
                 medical facilities near you. Whether you need immediate medical
                 attention, a routine check-up, or specialized care, MedFinder is
                 here to guide you every step of the way.
               </p>
-              <button className="btn btn-success"><Link href="/login">Book an Appointment</Link></button>
+              <button data-id="booking-btn" className="btn btn-success"><Link href="/login">Book an Appointment</Link></button>
             </div>
           </div>
-          <div className="items-center md:mr-8">
+          <div data-id="doc-picture" className="items-center md:mr-8">
             <Image
               src={FemaleDoctor}
               width={1250}
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="location flex flex-col md:flex-col lg:flex-row items-center justify-between gap-8 my-24">
+      <div className="cards grid grid-cols-2 md:flex-row lg:flex-row items-center justify-between gap-8 my-24">
         <div className="card bg-info text-primary-content w-96" data-aos="fade-left">
           <div className="card-body">
             <div className="inline-flex items-center gap-2">
@@ -83,15 +83,32 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <div className="card bg-info text-primary-content w-96" data-aos="fade-right">
+          <div className="card-body">
+            <div className="inline-flex items-center gap-2">
+              <RiSearchFill width={44} height={90} />
+              <h2 className="card-title">Find Hospitals</h2>
+            </div>
+            <p>Search for Hospitals close to you today.</p>
+            <div className="card-actions justify-end">
+              <button className="btn">Search</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     
     {/* <Hospitals/> */}
     <Hospitals />
 
-      <section className="hero ">
+
+
+
+
+      <section className="hero-bottom">
         <div className="hero flex flex-col-reverse  md:flex-row bg-base-200 min-h-screen">
-          <div className="flex flex-col  md:flex-col lg:flex-row items-center mx-auto gap-8 text-center">
+          <div data-id="hero-bottom"  className="flex flex-col  md:flex-col lg:flex-row items-center mx-auto gap-8 text-center">
         
             <Image
               src={MedConference}
