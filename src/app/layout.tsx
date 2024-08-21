@@ -69,7 +69,7 @@ export default function RootLayout({
                   <Link href="/contact">Contact us</Link>
                 </li>
                 <div className="navbar-end">
-                  <a className="btn">Log-In</a>
+                  <Link href="/login" className="btn">Log-In</Link>
                 </div>
               </ul>
             </div>

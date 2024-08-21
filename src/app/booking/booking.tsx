@@ -164,10 +164,10 @@ const Booking = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-            // onClick={() => {
-            //   signOut(auth);
-            //   sessionStorage.removeItem("user");
-            // }}
+            onClick={() => {
+              signOut(auth);
+              sessionStorage.removeItem("user");
+            }}
           >
             Submit
           </button>

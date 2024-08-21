@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="cards grid grid-cols-2 md:flex-row lg:flex-row items-center justify-between gap-8 my-24">
+      <div className="cards grid grid-cols-1 md:grid-cols-2 lg:flex-row items-center justify-between gap-8 my-24">
         <div className="card bg-info text-primary-content w-96" data-aos="fade-left">
           <div className="card-body">
             <div className="inline-flex items-center gap-2">

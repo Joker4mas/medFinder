@@ -21,6 +21,7 @@ const config: Config = withMT({
   },
   plugins: [
     require('daisyui'),
+    require("flowbite/plugin")
    
   ],
 });

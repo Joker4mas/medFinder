@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp , getApps, getApp} from "firebase/app";
-import {getAuth, GithubAuthProvider,GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import {getAuth, GithubAuthProvider,GoogleAuthProvider , onAuthStateChanged} from "firebase/auth";
+import {getFirestore} from "firebase/firestore";
+
 
 const firebaseConfig = {
   apiKey:process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,13 +14,18 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = !getApps().length ?  initializeApp(firebaseConfig) : getApp();
+const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app)
+// Initialize Google provider
 
 const googleProvider = new GoogleAuthProvider();
-
+// Initialize Github provider
 const githubProvider = new GithubAuthProvider();
+
+// Initialize Firestore
+export const db = getFirestore (app);
+
 
 // const  GoogleAuthProvider = getGoogleAuthProvider(app);
 export {app, auth, googleProvider, githubProvider}

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { auth, githubProvider, googleProvider } from "../config/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
+import Link from 'next/Link';
+import { signInWithPopup, signInWithEmailAndPassword,} from "firebase/auth";
 
 
 const Login = () => {
@@ -50,7 +51,7 @@ const Login = () => {
   return (
     <>
       <div className="">
-        <section className="bg-Gray-50 my-8">
+        <section className="bg-Gray-50 my-8 border-red-400">
           <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 
             shadow-lg rounded-lg bg-blueGray-200 border-0">
@@ -118,6 +119,8 @@ const Login = () => {
                       placeholder="Email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      aria-required
+                      aria-invalid
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -135,6 +138,8 @@ const Login = () => {
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      aria-invalid
+                      required
                     />
                   </div>
                   <div>
@@ -163,6 +168,7 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
+                   <div>Register <Link href="/signup"> Sign up</Link></div>
               </div>
             </div>
           </div>
