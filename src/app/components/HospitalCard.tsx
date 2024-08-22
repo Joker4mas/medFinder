@@ -6,15 +6,15 @@ import GoogleImage from "../images/google-maps.svg";
 interface HospitalCardProps {
   name: string;
   address: string;
-  //   state: string;
-  //   phone_number: any;
+  image: string;
+  // phone_number: any;
   //   clinic_type : string;
 }
 
 const HospitalCard: React.FC<HospitalCardProps> = ({
   name,
   address,
-  //   state,
+  image: string,
   //   phone_number,
 }) => {
   const handleOpenGoogleMaps = () => {
@@ -53,6 +53,8 @@ const HospitalCard: React.FC<HospitalCardProps> = ({
       <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-600 dark:text-gray-400">
         {name}
       </h5>
+
+      {/* <Image src={image} className="p-2" width={50} height={50} alt="hospital image"  /> */}
 
       <p className="mb-2 font-normal text-gray-700 dark:text-gray-300">
         {address}

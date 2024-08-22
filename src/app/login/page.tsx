@@ -20,7 +20,7 @@ const Login = () => {
       sessionStorage.setItem("user", email);
       setEmail("");
       setPassword("");
-      router.push("/booking");
+      router.push("/dashboard");
     } catch (e) {
       console.error(e);
     }
@@ -30,7 +30,7 @@ const Login = () => {
           try {
             await signInWithPopup(auth, googleProvider);
             sessionStorage.setItem("user", 'true');
-            router.push('/booking');
+            router.push('/dashboard');
           }catch (e){
             console.error(e);
           }
@@ -40,7 +40,7 @@ const Login = () => {
     try{
       await signInWithPopup(auth, githubProvider);
       sessionStorage.setItem("user", 'true');
-      router.push('/booking');
+      router.push('/dashboard');
     }catch(e){
       console.error(e)
     }
@@ -51,9 +51,9 @@ const Login = () => {
   return (
     <>
       <div className="">
-        <section className="bg-Gray-50 my-8 border-red-400">
-          <div className="w-full lg:w-4/12 px-4 mx-auto pt-6">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 
+        <section className="bg-Gray-50 my-8">
+          <div className="w-full md:w-2/4 lg:w-4/12 px-4 mx-auto pt-6">
+            <div className="relative flex flex-col min-w-0 md:min-w-52 break-words w-full mb-6 
             shadow-lg rounded-lg bg-blueGray-200 border-0">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
@@ -167,8 +167,8 @@ const Login = () => {
                       Sign In
                     </button>
                   </div>
+                   <div className="flex gap-4 my-2"><p>Need an Account ?</p><Link href="/signup" className="text-blue-400">Register</Link></div>
                 </form>
-                   <div>Register <Link href="/signup"> Sign up</Link></div>
               </div>
             </div>
           </div>

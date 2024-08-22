@@ -21,9 +21,10 @@ function SignUp() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+   
+    try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
     const userCollectionRef = doc(db, "users", user.user.uid);
-
     const userData = {
       email,
       firstName,
@@ -31,11 +32,18 @@ function SignUp() {
       phoneNumber,
       location,
     };
-
     await setDoc(userCollectionRef, userData);
 
     router.push("/dashboard");
+  }catch (error) {
+    if (error === 'auth/email-already-in-use') {
+      alert('Email address is already in use. Please try a different one or log in.');
+    } else {
+     router.push('/login')
+    }
+  }
   };
+
 
   return (
     <div>
@@ -166,18 +174,24 @@ function SignUp() {
               htmlFor="floating_location"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Company (Ex. Google)
+            Location (Ex. Kaduna)
             </label>
           </div>
         </div>
-        <button
+       <div className="flex-inline  justify-evenly gap-12">
+       <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Register
         </button>
+       
+       <Link href="/login" className="text-gray-500 ml-20  hover:text-blue-400">
+          Already have an account? Sign in
+        </Link>
+      
+       </div>
       </form>
-         <Link href="/login">Have an Account Login</Link>
     </div>
   );
 }

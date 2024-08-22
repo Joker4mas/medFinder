@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 interface Provider {
   name: string;
   address: string;
-  // product:string;
+  image:string;
   // state: string;
   // phone_number: any;
   // clinic_type : string;
@@ -23,8 +23,8 @@ const HospitalList: React.FC<HospitalCardProps> = ({ providersArray }) => {
             key={index}
             name={providers.name}
             address={providers.address}
-            // state={providers.state}
-            // phone_number={providers.phone_number?.json('')}
+            image={providers.image}
+            // phone_number={providers.co}
             // clinic_type={providers.clinic_type}
           />
         ))
