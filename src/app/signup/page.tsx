@@ -33,7 +33,6 @@ function SignUp() {
       location,
     };
     await setDoc(userCollectionRef, userData);
-
     router.push("/dashboard");
   }catch (error) {
     if (error === 'auth/email-already-in-use') {

@@ -2,16 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaFacebookSquare,
-  FaPhone,
-  FaEnvelope,
-  FaLinkedin,
-} from "react-icons/fa";
-import { FaHospital } from "react-icons/fa6";
+
+
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,67 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-
       <Header/>
-
-
         {children}
-
-
-
-
-        <footer className="footer bg-base-200 text-base-content text-center p-10">
-          <aside>
-            <div className="inline-flex items-center">
-              <FaHospital height={80} /> MedFinder
-            </div>
-
-            <p>
-              <br />
-              Providing reliable guide to latest health development and
-              Locations.
-            </p>
-          </aside>
-          <nav>
-            <h6 className="footer-title">Socials</h6>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaTwitter /> Twitter
-            </a>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaInstagram /> Instagram
-            </a>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaLinkedin /> LinkedIn
-            </a>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaFacebookSquare /> FaceBook
-            </a>
-          </nav>
-          <nav>
-            <h6 className="footer-title">MedFinder</h6>
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaPhone />
-              To-Free 1-800-med-finder
-            </a>
-            <a className="link link-hover inline-flex items-center gap-2">
-              <FaEnvelope />
-              support@medfinder.com
-            </a>
-          </nav>
-          <nav>
-            <h6 className="footer-title">Legal</h6>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
-            <a className="link link-hover">Cookie policy</a>
-          </nav>
-
-          <div>
-            <p>&copy;2024 All right reserved.</p>
-            <div>Developed by Samuel Ogbaje</div>
-          </div>
-        </footer>
+      <Footer/>
       </body>
     </html>
   );

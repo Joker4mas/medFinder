@@ -1,17 +1,73 @@
 "use client";
 
 import Image from "next/image";
-import { auth, githubProvider, googleProvider } from "../config/config";
+import { auth, githubProvider, googleProvider,db, doc, getDoc, setDoc } from "../config/config";
 import { useState } from "react";
+// import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import Link from 'next/Link';
+// import {auth, db} from '../config/config'
 import { signInWithPopup, signInWithEmailAndPassword,} from "firebase/auth";
+// import { alert } from "@material-tailwind/react";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const router = useRouter();
+
+
+  const checkIfUserExists = async (email) => {
+    try {
+        const  userDocRef =  doc(db, "users", email);
+        const userSnapshot = await getDoc(userDocRef);
+        return userSnapshot.exists();
+    } catch (err) {
+      console.error('Error checking user in Firebase:', err);
+      return false;
+    }
+  };
+
+
+  // Function to save new user to Firestore
+  const addUserToFirestore = async (user) => {
+    try {
+      const userDocRef = doc(db, "users", user.email);
+      await setDoc(userDocRef, {
+        email: user.email,
+        name: user.displayName,
+        provider: user.providerId,
+        createdAt: new Date(),
+      });
+    } catch (err) {
+      console.error("Error adding user to Firestore:", err);
+    }
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventdefault();
+    setError(null);
+
+    try {
+      const userExists = await checkIfUserExists(email);//checks if user exist
+      if (userExists){
+        //if the user is found in firestore, proceed to sign in 
+        await signInWithEmailAndPassword(auth, email, password);
+        router.push("/dashboard");
+      }else{
+        //if user dosn't exist in the store redirect to the register page
+        setError("User not found. Please  Register.");
+        router.push('/signup');
+      }
+    }catch(err){
+      setError(err.message);
+    }
+  };
+
+
+
+
 
   const handleSingIn = async () => {
     try {
@@ -26,26 +82,67 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSingIn = async () => {
-          try {
-            await signInWithPopup(auth, googleProvider);
-            sessionStorage.setItem("user", 'true');
-            router.push('/dashboard');
-          }catch (e){
-            console.error(e);
-          }
-  }
+  // const handleGoogleSingIn = async () => {
+  //         try {
+  //           await signInWithPopup(auth, googleProvider);
+  //           sessionStorage.setItem("user", 'true');
+  //           router.push('/dashboard');
+  //         }catch (e){
+  //           console.error(e);
+  //         }
+  // }
 
-  const handleGitSignIn = async () =>{
-    try{
-      await signInWithPopup(auth, githubProvider);
-      sessionStorage.setItem("user", 'true');
-      router.push('/dashboard');
-    }catch(e){
-      console.error(e)
+  // Sign in with Google
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // Check if user exists in Firestore
+      const userExists = await checkIfUserExists(user.email);
+
+      if (!userExists) {
+        // If user does not exist, add them to Firestore
+        await addUserToFirestore(user);
+      }
+
+      router.push("/dashboard"); // Redirect to dashboard after successful login
+    } catch (err) {
+      setError(err.message);
     }
-  }
+  };
 
+
+
+  // const handleGitSignIn = async () =>{
+  //   try{
+  //     await signInWithPopup(auth, githubProvider);
+  //     sessionStorage.setItem("user", 'true');
+  //     router.push('/dashboard');
+  //   }catch(e){
+  //     console.error(e)
+  //   }
+  // }
+
+
+  const handleGitHubSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, githubProvider);
+      const user = result.user;
+
+      // Check if user exists in Firestore
+      const userExists = await checkIfUserExists(user.email);
+
+      if (!userExists) {
+        // If user does not exist, add them to Firestore
+        await addUserToFirestore(user);
+      }
+
+      router.push("/dashboard"); // Redirect to dashboard after successful login
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
 
   return (

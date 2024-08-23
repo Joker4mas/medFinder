@@ -6,6 +6,7 @@ import MedConference from "./images/medConfe_oed4bz.jpg"
 import { RiGlobalFill, RiSearchFill, RiSpeakFill } from "react-icons/ri";
 import Link from "next/link";
 import Hospitals from "./components/Hospitals";
+// import Teams from './components/Teams'
 
 
 
@@ -13,14 +14,14 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4">
       
-      <section className="hero ">
+      <section data-id="hero-section" className="hero ">
         <div className="hero flex flex-col-reverse  md:flex-row bg-base-200 min-h-screen">
           <div data-id="hero-container" className="hero-content flex-col lg:flex-row-reverse w-50">
             <div>
               <h1 data-id="hero-header" className="text-5xl font-bold">
                 Discover Nearby Medical Facilities with MedFinder
               </h1>
-              <p data-id="welcome-note" className="py-12 ">
+              <p data-id="welcome-note" className="p-12 ">
                 Welcome to MedFinder, your trusted partner in locating the best
                 medical facilities near you. Whether you need immediate medical
                 attention, a routine check-up, or specialized care, MedFinder is
@@ -44,12 +45,12 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="cards grid grid-cols-1 md:grid-cols-2 lg:flex-row items-center justify-between gap-8 my-24">
-        <div className="card bg-info text-primary-content w-96" data-aos="fade-left">
-          <div className="card-body">
+      <div data-testid="card-components" className="cards grid grid-cols-1 md:grid-cols-2 lg:flex-row items-center justify-between gap-8 my-24">
+        <div data-testid="first-card" className="card bg-info text-primary-content w-96" data-aos="fade-left">
+          <div  className="card-body">
             <div className="inline-flex items-center gap-2">
               <RiGlobalFill width={44} height={90} />
-              <h2 className="card-title">Nationwide Hospitals!</h2>
+              <h2 data-testid="card-title" className="card-title">Nationwide Hospitals!</h2>
             </div>
             <p>Get Hospitals in every state within Nigeria</p>
             <div className="card-actions justify-start">
@@ -126,6 +127,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </main>
   );
 }

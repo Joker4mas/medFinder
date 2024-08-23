@@ -42,16 +42,16 @@ function Header() {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <Link className={`link ${pathname == '/about' ? 'active' : ''}`}  href="/about">About</Link>
+                  <Link  href="/about">About</Link>
                 </li>
                 <li>
-                  <Link  className={`link ${pathname == '/contact' ? 'active' : ''}`}   href="/contact">Contact us</Link>
+                  <Link   href="/contact">Contact us</Link>
                 </li>
                 <li>
-                  <Link  className={`link ${pathname == '/login' ? 'active' : ''}`}   href="/contact">Dashboard</Link>
+                  <Link  href="/contact">Dashboard</Link>
                 </li>
                 <div className="navbar-end">
-                  <Link className={`link ${pathname == '/login' ? 'active' : ''}`}   href="/login">Log-In</Link>
+                  <Link  href="/login">Log-In</Link>
                 </div>
               </ul>
             </div>
@@ -59,21 +59,24 @@ function Header() {
               <ul className="menu menu-horizontal px-1 gap-4"
               data-id="unordered-list-item"
               >
-                <li data-id="about" className="text-xl ">
-                  <Link className={`link ${pathname == '/about' ? 'active' : ''}`}  href="/about">About</Link>
+                <li data-testid="about" className="text-xl ">
+                  <Link   href="/about">About</Link>
                 </li>
-                <li data-id="contact" className="text-xl ">
-                  <Link className={`link ${pathname == '/contact' ? 'active' : ''}`}  href="/contact">Contact us</Link>
+                <li data-testid="contact" className="text-xl ">
+                  <Link href="/contact">Contact us</Link>
+                </li>
+                <li data-testid="dashboard" className="text-xl ">
+                  <Link href="/login">Dashboard</Link>
                 </li>
               </ul>
-              <div className="btn line">
-                <Link className={`link ${pathname == '/login' ? 'active' : ''}`}  href="/login">
+              <div data-testid="login" className="btn">
+                <Link   href="/signup">
                   LogIn
                 </Link>
               </div>
             </div>
 
-            <div className="  md:h-10 mx-auto mt-2" data-id="theme-btn">
+            <div className="  md:h-10 mx-auto mt-2" data-testid="theme-btn">
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
                 <input
@@ -102,7 +105,7 @@ function Header() {
               </label>
             </div>
 
-            <div className="navbar-end btn btn-ghost text-3xl font-bold line" data-id="logo">
+            <div className="btn btn-ghost  text-3xl font-bold" data-testid="logo">
               <Link href="/" >MedFinder</Link>
             </div>
           </div>
