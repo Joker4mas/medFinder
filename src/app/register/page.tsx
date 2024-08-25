@@ -6,7 +6,7 @@ import { useState } from "react";
 import { auth, db } from "../config/config";
 import { useRouter } from "next/navigation";
 import React from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import { toast } from "react-toastify";
 
 function SignUp() {

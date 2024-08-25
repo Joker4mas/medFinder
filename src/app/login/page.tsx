@@ -5,7 +5,7 @@ import { auth, githubProvider, googleProvider } from "../config/config";
 import { useState } from "react";
 // import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import Link from 'next/Link';
+import Link from 'next/link';
 // import {auth, db} from '../config/config'
 import { signInWithPopup, signInWithEmailAndPassword,} from "firebase/auth";
 
@@ -271,12 +271,11 @@ const Login = () => {
                       Sign In
                     </button>
                   </div>
+                </form>
                    <div className="flex gap-4 my-2"><p>Need an Account ?
-                    
                     <Link href="/register" className="text-blue-400 ml-4">Register</Link>
                     </p>
                     </div>
-                </form>
               </div>
             </div>
           </div>
