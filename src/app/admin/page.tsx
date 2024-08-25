@@ -1,14 +1,60 @@
+'use client'
+
+import {  createUserWithEmailAndPassword} from "firebase/auth";
+import {collection, doc, setDoc} from 'firebase/firestore';
+import { auth, db } from "../config/config";
+import {useRouter} from 'next/navigation';
+import Link from 'next/Link';
+import {useState} from 'react'
+
+
 const AdminUser = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const router = useRouter ();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const admin = await createUserWithEmailAndPassword(auth, email, password);
+      const userCollectionRef = doc(db, "admin", admin.user.uid);
+      const adminData = {
+        email
+      };
+      await setDoc(userCollectionRef, adminData);
+      // router.push('')
+    } catch (error) {
+      if (error == "auth/email already-in-use") {
+        alert(
+          "Email address already in use "
+        );
+      }else{
+        // router.push('')
+      }
+    }
+
+  };
+
+
+
+
+
+
+
   return (
     <>
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className="bg-gray-800 dark:bg-gray-50">
+        <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Create an account
+                Become an Admin!
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" onSubmit={(e) => onSubmit(e)}>
                 <div>
                   <label
                     htmlFor="email"
@@ -19,6 +65,8 @@ const AdminUser = () => {
                   <input
                     type="email"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
@@ -36,6 +84,8 @@ const AdminUser = () => {
                     type="password"
                     name="password"
                     id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -51,6 +101,8 @@ const AdminUser = () => {
                   <input
                     type="confirm-password"
                     name="confirm-password"
+                   onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
                     id="confirm-password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

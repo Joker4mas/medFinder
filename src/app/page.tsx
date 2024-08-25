@@ -17,16 +17,18 @@ export default function Home() {
       <section data-id="hero-section" className="hero ">
         <div className="hero flex flex-col-reverse  md:flex-row bg-base-200 min-h-screen">
           <div data-id="hero-container" className="hero-content flex-col lg:flex-row-reverse w-50">
-            <div>
+            <div className="p-4">
               <h1 data-id="hero-header" className="text-5xl font-bold">
                 Discover Nearby Medical Facilities with MedFinder
               </h1>
-              <p data-id="welcome-note" className="p-12 ">
+
+              <p data-id="welcome-note" className="py-8  line-24">
                 Welcome to MedFinder, your trusted partner in locating the best
-                medical facilities near you. Whether you need immediate medical
+                medical facilities near you. <br /> Whether you need immediate medical
                 attention, a routine check-up, or specialized care, MedFinder is
                 here to guide you every step of the way.
               </p>
+
               <button data-id="booking-btn" className="btn btn-success"><Link href="/login">Book an Appointment</Link></button>
             </div>
           </div>
@@ -36,11 +38,9 @@ export default function Home() {
               width={1250}
               height={1250}
               alt="consultation picture"
-              className="h-full rounded-md"
+              className="h-full rounded-md p-4"
               priority={true}
             />
-
-            {/* <CldImage src='/public/images/' width={850} heigh={550} alt="Cloud images"/> */}
           </div>
         </div>
       </section>
@@ -66,7 +66,7 @@ export default function Home() {
               <h2 className="card-title">Free Consultations!</h2>
             </div>
             <p>Get free Consultation on us today.</p>
-            <div className="card-actions justify-center">
+            <div className="card-actions justify-end">
               <button className="btn"><Link href="./login">Book now </Link> </button>
             </div>
           </div>
@@ -76,11 +76,11 @@ export default function Home() {
           <div className="card-body">
             <div className="inline-flex items-center gap-2">
               <RiSearchFill width={44} height={90} />
-              <h2 className="card-title">Find Hospitals</h2>
+              <h2 className="card-title">Add new Hospitals</h2>
             </div>
-            <p>Search for Hospitals close to you today.</p>
-            <div className="card-actions justify-end">
-              <button className="btn">Search</button>
+            <p>You can add new Hospitals to our list 😇 .</p>
+            <div className="card-actions justify-start">
+              <button className="btn"><Link href="/admin">LogIn as an Admin</Link></button>
             </div>
           </div>
         </div>

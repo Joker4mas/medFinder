@@ -70,7 +70,7 @@ function Header() {
                 </li>
               </ul>
               <div data-testid="login" className="btn">
-                <Link   href="/signup">
+                <Link   href="/register">
                   LogIn
                 </Link>
               </div>

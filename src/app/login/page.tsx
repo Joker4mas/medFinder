@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { auth, githubProvider, googleProvider,db, doc, getDoc, setDoc } from "../config/config";
+import { auth, githubProvider, googleProvider } from "../config/config";
 import { useState } from "react";
 // import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import Link from 'next/Link';
 // import {auth, db} from '../config/config'
 import { signInWithPopup, signInWithEmailAndPassword,} from "firebase/auth";
-// import { alert } from "@material-tailwind/react";
+
 
 
 const Login = () => {
@@ -18,52 +18,52 @@ const Login = () => {
   const router = useRouter();
 
 
-  const checkIfUserExists = async (email) => {
-    try {
-        const  userDocRef =  doc(db, "users", email);
-        const userSnapshot = await getDoc(userDocRef);
-        return userSnapshot.exists();
-    } catch (err) {
-      console.error('Error checking user in Firebase:', err);
-      return false;
-    }
-  };
+  // const checkIfUserExists = async (email) => {
+  //   try {
+  //       const  userDocRef =  doc(db, "users", email);
+  //       const userSnapshot = await getDoc(userDocRef);
+  //       return userSnapshot.exists();
+  //   } catch (err) {
+  //     console.error('Error checking user in Firebase:', err);
+  //     return false;
+  //   }
+  // };
 
 
   // Function to save new user to Firestore
-  const addUserToFirestore = async (user) => {
-    try {
-      const userDocRef = doc(db, "users", user.email);
-      await setDoc(userDocRef, {
-        email: user.email,
-        name: user.displayName,
-        provider: user.providerId,
-        createdAt: new Date(),
-      });
-    } catch (err) {
-      console.error("Error adding user to Firestore:", err);
-    }
-  };
+  // const addUserToFirestore = async (user) => {
+  //   try {
+  //     const userDocRef = doc(db, "users", user.email);
+  //     await setDoc(userDocRef, {
+  //       email: user.email,
+  //       name: user.displayName,
+  //       provider: user.providerId,
+  //       createdAt: new Date(),
+  //     });
+  //   } catch (err) {
+  //     console.error("Error adding user to Firestore:", err);
+  //   }
+  // };
 
-  const handleSignIn = async (e) => {
-    e.preventdefault();
-    setError(null);
+  // const handleSignIn = async (e) => {
+  //   e.preventdefault();
+  //   setError(null);
 
-    try {
-      const userExists = await checkIfUserExists(email);//checks if user exist
-      if (userExists){
-        //if the user is found in firestore, proceed to sign in 
-        await signInWithEmailAndPassword(auth, email, password);
-        router.push("/dashboard");
-      }else{
-        //if user dosn't exist in the store redirect to the register page
-        setError("User not found. Please  Register.");
-        router.push('/signup');
-      }
-    }catch(err){
-      setError(err.message);
-    }
-  };
+  //   try {
+  //     const userExists = await checkIfUserExists(email);//checks if user exist
+  //     if (userExists){
+  //       //if the user is found in firestore, proceed to sign in 
+  //       await signInWithEmailAndPassword(auth, email, password);
+  //       router.push("/dashboard");
+  //     }else{
+  //       //if user dosn't exist in the store redirect to the register page
+  //       setError("User not found. Please  Register.");
+  //       router.push('/signup');
+  //     }
+  //   }catch(err){
+  //     setError(err.message);
+  //   }
+  // };
 
 
 
@@ -82,67 +82,76 @@ const Login = () => {
     }
   };
 
-  // const handleGoogleSingIn = async () => {
-  //         try {
-  //           await signInWithPopup(auth, googleProvider);
-  //           sessionStorage.setItem("user", 'true');
-  //           router.push('/dashboard');
-  //         }catch (e){
-  //           console.error(e);
-  //         }
-  // }
+  const handleGoogleSingIn = async () => {
+          try {
+            await signInWithPopup(auth, googleProvider);
+            sessionStorage.setItem("user", 'true');
+            router.push('/dashboard');
+          }catch (e){
+            console.error(e);
+          }
+  }
 
-  // Sign in with Google
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
+
+
+  // Sign in with Google to check if a user exist
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const user = result.user;
 
       // Check if user exists in Firestore
-      const userExists = await checkIfUserExists(user.email);
+  //     const userExists = await checkIfUserExists(user.email);
 
-      if (!userExists) {
+  //     if (!userExists) {
         // If user does not exist, add them to Firestore
-        await addUserToFirestore(user);
-      }
+  //       await addUserToFirestore(user);
+  //     }
 
-      router.push("/dashboard"); // Redirect to dashboard after successful login
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-
-
-  // const handleGitSignIn = async () =>{
-  //   try{
-  //     await signInWithPopup(auth, githubProvider);
-  //     sessionStorage.setItem("user", 'true');
-  //     router.push('/dashboard');
-  //   }catch(e){
-  //     console.error(e)
+  //     router.push("/dashboard"); // Redirect to dashboard after successful login
+  //   } catch (err) {
+  //     setError(err.message);
   //   }
-  // }
+  // };
 
 
-  const handleGitHubSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, githubProvider);
-      const user = result.user;
+
+  const handleGitSignIn = async () =>{
+    try{
+      await signInWithPopup(auth, githubProvider);
+      sessionStorage.setItem("user", 'true');
+      router.push('/dashboard');
+    }catch(e){
+      console.error(e)
+    }
+  }
+
+
+
+  // Sign in with GitHub and check if user exist
+  // const handleGitHubSignIn = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, githubProvider);
+  //     const user = result.user;
 
       // Check if user exists in Firestore
-      const userExists = await checkIfUserExists(user.email);
+  //     const userExists = await checkIfUserExists(user.email);
 
-      if (!userExists) {
+  //     if (!userExists) {
         // If user does not exist, add them to Firestore
-        await addUserToFirestore(user);
-      }
+  //       await addUserToFirestore(user);
+  //     }
 
-      router.push("/dashboard"); // Redirect to dashboard after successful login
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  //     router.push("/dashboard"); // Redirect to dashboard after successful login
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
+
+
+
+
+  
 
 
   return (
@@ -217,7 +226,6 @@ const Login = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       aria-required
-                      aria-invalid
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -235,8 +243,7 @@ const Login = () => {
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      aria-invalid
-                      required
+                      aria-required
                     />
                   </div>
                   <div>
@@ -264,7 +271,11 @@ const Login = () => {
                       Sign In
                     </button>
                   </div>
-                   <div className="flex gap-4 my-2"><p>Need an Account ?</p><Link href="/signup" className="text-blue-400">Register</Link></div>
+                   <div className="flex gap-4 my-2"><p>Need an Account ?
+                    
+                    <Link href="/register" className="text-blue-400 ml-4">Register</Link>
+                    </p>
+                    </div>
                 </form>
               </div>
             </div>
