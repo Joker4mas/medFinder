@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+// import Link from "next/Link";
 import {signOut} from 'firebase/auth'
 import { useRouter } from "next/navigation";
 import {auth} from '../config/config'

@@ -273,8 +273,8 @@ const Login = () => {
                   </div>
                 </form>
                    <div className="flex gap-4 my-2"><p>Need an Account ?
-                    <Link href="/register" className="text-blue-400 ml-4">Register</Link>
                     </p>
+                    <Link href="/register" className="text-blue-400 ml-4">Register</Link>
                     </div>
               </div>
             </div>
