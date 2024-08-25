@@ -4,7 +4,7 @@ import {  createUserWithEmailAndPassword} from "firebase/auth";
 import {collection, doc, setDoc} from 'firebase/firestore';
 import { auth, db } from "../config/config";
 import {useRouter} from 'next/navigation';
-import Link from 'next/Link';
+import Link from 'next/link';
 import {useState} from 'react'
 
 
