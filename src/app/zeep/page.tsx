@@ -1,15 +1,16 @@
-"use client";
-import {useForm, SubmitHandler} from 'react-hook-form'
-import Image from "next/image";
-import { auth, githubProvider, googleProvider , db} from "../config/config";
-import { useState } from "react";
-import {doc, getDoc } from 'firebase/firestore';
-import { useRouter } from "next/navigation";
-import Link from 'next/link';
-import { ToastContainer,toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { signInWithPopup, signInWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider} from "firebase/auth";
+'use client';
 
+import React, { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
+import {  doc, getDoc } from 'firebase/firestore';
+import { db, auth } from '../config/config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 interface IFormInput {
   email: string;
@@ -124,28 +125,14 @@ const LoginForm: React.FC = () => {
           disabled={isLoading}
           className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
         >
-               <Image
-                      alt="..."
-                      className="w-5 mr-1"
-                      src="https://demos.creative-tim.com/notus-js/assets/img/google.svg"
-                      width={40}
-                      height={60}
-                    />
-         
+          Sign in with Google
         </button>
         <button
           onClick={handleGithubSignIn}
           disabled={isLoading}
-          className="w-full px-4 py-2 font-bold text-white bg-gray-200 rounded hover:bg-green-400"
+          className="w-full px-4 py-2 font-bold text-white bg-gray-800 rounded hover:bg-gray-900"
         >
-                  <Image
-                      alt="..."
-                      className="w-5 mr-1"
-                      src="https://demos.creative-tim.com/notus-js/assets/img/github.svg"
-                      width={40}
-                      height={60}
-                    />
-          
+          Sign in with GitHub
         </button>
       </div>
 

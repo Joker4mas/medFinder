@@ -7,7 +7,8 @@ import { auth, db } from "../config/config";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Link from "next/link";
-import { toast } from "react-toastify";
+import { Bounce, ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -38,11 +39,30 @@ function SignUp() {
         position: "top-center",
       });
       router.push("/dashboard");
+      toast.success('Welcome to admin Dashboard😉!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       if (error === "auth/email-already-in-use") {
         alert(
           "Email address is already in use. Please try a different one or log in."
         );
+        toast.error('An error occurred while submitting the form. Please try again.', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: 'dark',
+          progress: undefined,
+        });
       } else {
         router.push("/login");
       }
@@ -199,6 +219,7 @@ function SignUp() {
           </Link>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   );
 }

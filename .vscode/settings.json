@@ -4,6 +4,7 @@
         "Firestore",
         "NEXTAUTH",
         "testid",
+        "toastify",
         "today",
         "Userinformation"
     ]

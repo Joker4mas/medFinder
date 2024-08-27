@@ -1,6 +1,46 @@
 "use client";
 
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth, db } from '@/app/config/config';
+import { collection, doc,setDoc } from "firebase/firestore";
+
+
+
+
+
+
 const AdminSignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [checked, setChecked] = useState('');
+
+const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+// Additional code to handle form submission and validation errors
+try {
+  const userAmin = await createUserWithEmailAndPassword(auth, email, password);
+  const userCollectionRef = doc(db, "admin", userAmin.user.uid);
+  const userAdminData ={
+    email,
+    password,
+  };
+  // Additional code to handle successful user creation
+  	await setDoc(userCollectionRef, userAdminData);
+
+} catch (error: any) {
+  if (error.code === "auth/email-already-in-use") {
+    alert(
+      "Email address already in use "
+    );
+  } else {
+    alert(error.message);
+  }
+}
+};
+
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -8,7 +48,7 @@ const AdminSignIn = () => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Sign into Admin account
+                Sign Up for Admin access!
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
@@ -24,6 +64,7 @@ const AdminSignIn = () => {
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -39,6 +80,7 @@ const AdminSignIn = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
+                    onChange={(e) => setPassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />
@@ -50,6 +92,7 @@ const AdminSignIn = () => {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
+                        onChange={(e) => setChecked(e.target.value)}
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                         required
                       />
@@ -64,7 +107,7 @@ const AdminSignIn = () => {
                     </div>
                   </div>
                   <a
-                    href="#"
+                    href="/reset"
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Forgot password?
