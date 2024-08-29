@@ -25,6 +25,8 @@ const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<IFormInput>();
 
+  const router = useRouter()
+
   const checkUserExists = async (uid: string) => {
     const userRef = doc(db, 'users', uid);
     const userSnap = await getDoc(userRef);
@@ -36,11 +38,11 @@ const LoginForm: React.FC = () => {
     if (userExists) {
       toast.success('Login successful!');
       // Redirect to dashboard or home page
-      // For example: router.push('/dashboard');
+    router.push('/dashboard');
     } else {
       toast.info('New user detected. Please complete registration.');
       // Redirect to registration page
-      // For example: router.push('/register');
+    router.push('/register');
     }
   };
 
@@ -81,8 +83,8 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-8">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="max-w-md mx-auto my-8 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 my-8">
         <div>
           <label htmlFor="email" className="block mb-2 font-bold">
             Email
@@ -112,31 +114,33 @@ const LoginForm: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-full px-4 py-2 my-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
 
-      <div className="mt-4 space-y-2">
+      <div className="grid grid-cols-2 gap-2 items-center mx-auto  space-y-2">
         <button
           onClick={handleGoogleSignIn}
           disabled={isLoading}
-          className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+          className="w-32 px-4 py-2 font-bold mx-auto text-white bg-red-500 rounded hover:bg-red-700"
         >
-               <Image
+             <span className='flex'>
+             <Image
                       alt="..."
                       className="w-5 mr-1"
                       src="https://demos.creative-tim.com/notus-js/assets/img/google.svg"
                       width={40}
-                      height={60}
+                      height={40}
                     />
-         
+                   Google 
+                 </span>        
         </button>
         <button
           onClick={handleGithubSignIn}
           disabled={isLoading}
-          className="w-full px-4 py-2 font-bold text-white bg-gray-200 rounded hover:bg-green-400"
+          className="flex w-32 px-4 py-2 mx-auto font-bold text-white bg-gray-400 rounded hover:bg-green-400"
         >
                   <Image
                       alt="..."
@@ -145,10 +149,12 @@ const LoginForm: React.FC = () => {
                       width={40}
                       height={60}
                     />
-          
+          Github
         </button>
       </div>
-
+      <div className="flex justify-between gap-4 my-4">
+       <p>Need have an Account ?</p> <span><Link href="/register" className="hover:text-blue-600"> Register here</Link></span>
+      </div>
       <ToastContainer />
     </div>
   );
