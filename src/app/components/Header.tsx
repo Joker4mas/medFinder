@@ -39,19 +39,19 @@ function Header() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 p-2 shadow h-screen min-w-80"
               >
-                <li>
+                <li className='mb-6'>
                   <Link  href="/about">About</Link>
                 </li>
-                <li>
+                <li className='mb-6'>
                   <Link   href="/contact">Contact us</Link>
                 </li>
-                <li>
+                <li className='mb-6'>
                   <Link  href="/contact">Dashboard</Link>
                 </li>
-                <div className="navbar-end">
-                  <Link  href="/login">Log-In</Link>
+                <div className="navbar-end ml-3">
+                  <Link  href="../pages/register">Log-In</Link>
                 </div>
               </ul>
             </div>
@@ -66,11 +66,11 @@ function Header() {
                   <Link href="/contact">Contact us</Link>
                 </li>
                 <li data-testid="dashboard" className="text-xl ">
-                  <Link href="/login">Dashboard</Link>
+                  <Link href="../pages/login">Dashboard</Link>
                 </li>
               </ul>
               <div data-testid="login" className="btn">
-                <Link   href="/register">
+                <Link   href="../pages/register">
                   LogIn
                 </Link>
               </div>

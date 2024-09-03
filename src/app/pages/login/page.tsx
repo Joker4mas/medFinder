@@ -1,7 +1,7 @@
 "use client";
 import {useForm, SubmitHandler} from 'react-hook-form'
 import Image from "next/image";
-import { auth, githubProvider, googleProvider , db} from "../config/config";
+import { auth, githubProvider, googleProvider , db} from "../../config/config";
 import { useState } from "react";
 import {doc, getDoc } from 'firebase/firestore';
 import { useRouter } from "next/navigation";
@@ -38,11 +38,11 @@ const LoginForm: React.FC = () => {
     if (userExists) {
       toast.success('Login successful!');
       // Redirect to dashboard or home page
-    router.push('/dashboard');
+    router.push('../pages/dashboard');
     } else {
       toast.info('New user detected. Please complete registration.');
       // Redirect to registration page
-    router.push('/register');
+    router.push('../pages/register');
     }
   };
 
@@ -83,8 +83,8 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-8 ">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 my-8">
+    <div className="max-w-sm items-center my-auto  mx-auto h-screen">
+      <form onSubmit={handleSubmit(onSubmit)} className="container p-4  border-2 border-green-400 ">
         <div>
           <label htmlFor="email" className="block mb-2 font-bold">
             Email
@@ -118,7 +118,7 @@ const LoginForm: React.FC = () => {
         >
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
-      </form>
+
 
       <div className="grid grid-cols-2 gap-2 items-center mx-auto  space-y-2">
         <button
@@ -152,9 +152,14 @@ const LoginForm: React.FC = () => {
           Github
         </button>
       </div>
-      <div className="flex justify-between gap-4 my-4">
-       <p>Need have an Account ?</p> <span><Link href="/register" className="hover:text-blue-600"> Register here</Link></span>
+
+      <div className=" my-4">
+       <p>Need have an Account ? 
+        <Link href="/register" className="hover:text-green-600 mr-4"> ...Register here</Link>
+        </p> 
       </div>
+      </form>
+
       <ToastContainer />
     </div>
   );

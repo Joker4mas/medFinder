@@ -4,7 +4,7 @@ import Link from "next/link";
 // import Link from "next/Link";
 import {signOut} from 'firebase/auth'
 import { useRouter } from "next/navigation";
-import {auth} from '../config/config'
+import {auth} from '@/app/config/config'
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
@@ -93,7 +93,7 @@ const  AdminBoard = () => {
 
             <li>
               <Link
-                href="/booking"
+                href="../booking"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg

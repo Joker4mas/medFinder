@@ -10,7 +10,7 @@ import {
   import { FaHospital } from "react-icons/fa6";
 function Footer() {
   return (
-    <div>
+    <div className='bottom-0'>
          <footer  data-testid="footer" className="footer bg-base-200 text-base-content text-center p-10">
           <aside data-testid="aside">
             <div className="inline-flex items-center">
@@ -67,4 +67,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;

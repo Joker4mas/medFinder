@@ -150,7 +150,7 @@ const Hospitals: React.FC = () => {
 
       <HospitalList providersArray={currentPosts} />
 
-      <div className="grid grid-row-4 md:grid-cols-2 lg:grid-cols-4  gap-12">
+      <div className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-4  gap-12">
         {isLoading
           ? Array.from({ length: 4 }).map((_, index) => (
               <SkeletonCard key={index} />
