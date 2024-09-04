@@ -1,7 +1,7 @@
 "use client";
 import {useForm, SubmitHandler} from 'react-hook-form'
 import Image from "next/image";
-import { auth, githubProvider, googleProvider , db} from "../../config/config";
+import { auth, githubProvider, googleProvider , db} from "../config/config";
 import { useState } from "react";
 import {doc, getDoc } from 'firebase/firestore';
 import { useRouter } from "next/navigation";
@@ -38,11 +38,11 @@ const LoginForm: React.FC = () => {
     if (userExists) {
       toast.success('Login successful!');
       // Redirect to dashboard or home page
-    router.push('../pages/dashboard');
+    router.push('/dashboard');
     } else {
       toast.info('New user detected. Please complete registration.');
       // Redirect to registration page
-    router.push('../pages/register');
+    router.push('/register');
     }
   };
 

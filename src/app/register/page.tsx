@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Bounce, ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function SignUp() {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -224,4 +224,3 @@ function SignUp() {
   );
 }
 
-export default SignUp;

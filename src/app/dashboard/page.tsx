@@ -8,7 +8,7 @@ import {auth} from '@/app/config/config'
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
-const  AdminBoard = () => {
+export default function  AdminBoard() {
 
   // const [user] = useAuthState(auth)
   // const userSession = sessionStorage.getItem("user")
@@ -350,4 +350,4 @@ const  AdminBoard = () => {
   );
 };
 
-export default AdminBoard;
+

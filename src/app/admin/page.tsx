@@ -2,13 +2,12 @@
 
 import {  createUserWithEmailAndPassword} from "firebase/auth";
 import {collection, doc, setDoc} from 'firebase/firestore';
-import { auth, db } from "../../config/config";
+import { auth, db } from "../config/config";
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 import {useState} from 'react'
 
-
-const AdminUser = () => {
+export default function  AdminUser() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
@@ -151,6 +150,4 @@ const AdminUser = () => {
       </section>
     </>
   );
-};
-
-export default AdminUser;
+}

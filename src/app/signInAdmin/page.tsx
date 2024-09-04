@@ -10,7 +10,7 @@ import { collection, doc,setDoc } from "firebase/firestore";
 
 
 
-const AdminSignIn = () => {
+export default function AdminSignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState('');
@@ -131,4 +131,4 @@ try {
   );
 };
 
-export default AdminSignIn;
+

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useAuthState } from "react-firebase-hooks/auth";
 // import Dashboard from "../dashboard/page";
 
-const Booking = () => {
+export default function  Booking () {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -167,4 +167,3 @@ const Booking = () => {
   );
 };
 
-export default Booking;
