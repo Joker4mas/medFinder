@@ -14,7 +14,9 @@ images:{
     ]
     
 },
-
+experimental: {
+    appDir: true,
+  },
 
 };
 
