@@ -58,6 +58,8 @@ const LoginForm: React.FC = () => {
     }
   };
 
+
+  //handle google sign-In success
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
@@ -70,6 +72,8 @@ const LoginForm: React.FC = () => {
     }
   };
 
+
+  //handles github sign-In
   const handleGithubSignIn = async () => {
     setIsLoading(true);
     try {

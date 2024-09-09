@@ -48,7 +48,7 @@ function Header() {
                   <Link   href="/contact">Contact us</Link>
                 </li>
                 <li className='mb-6'>
-                  <Link  href="/contact">Dashboard</Link>
+                  <Link  href="/login">Dashboard</Link>
                 </li>
                 <div className="navbar-end ml-3">
                   <Link  href="../pages/register">Log-In</Link>
@@ -66,11 +66,11 @@ function Header() {
                   <Link href="/contact">Contact us</Link>
                 </li>
                 <li data-testid="dashboard" className="text-xl ">
-                  <Link href="../pages/login">Dashboard</Link>
+                  <Link href="/login">Dashboard</Link>
                 </li>
               </ul>
               <div data-testid="login" className="btn">
-                <Link   href="../pages/register">
+                <Link   href="/register">
                   LogIn
                 </Link>
               </div>
