@@ -48,11 +48,12 @@ function Header() {
                   <Link   href="/contact">Contact us</Link>
                 </li>
                 <li className='mb-6'>
-                  <Link  href="/login">Dashboard</Link>
+                  <Link  href="/dashboard">Dashboard</Link>
                 </li>
                 <div className="navbar-end ml-3">
-                  <Link  href="../pages/register">Log-In</Link>
+                  <Link  href="/register">Register</Link>
                 </div>
+                
               </ul>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -66,12 +67,15 @@ function Header() {
                   <Link href="/contact">Contact us</Link>
                 </li>
                 <li data-testid="dashboard" className="text-xl ">
-                  <Link href="/login">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
+                </li>
+                <li data-testid="dashboard" className="text-xl ">
+                  <Link href="/login">Login</Link>
                 </li>
               </ul>
-              <div data-testid="login" className="btn">
+              <div data-testid="register" className="btn">
                 <Link   href="/register">
-                  LogIn
+                  Register
                 </Link>
               </div>
             </div>

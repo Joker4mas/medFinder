@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Link from 'next/link';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signInWithPopup, signInWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider} from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
 
 
 interface IFormInput {
@@ -51,6 +51,7 @@ const LoginForm: React.FC = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
       await handleLogin(userCredential.user);
+    router.push('/dashboard');
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -65,6 +66,7 @@ const LoginForm: React.FC = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       await handleLogin(result.user);
+    router.push('/dashboard');
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -88,7 +90,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="max-w-sm items-center my-auto  mx-auto h-screen">
-      <form onSubmit={handleSubmit(onSubmit)} className="container p-4  border-2 border-green-400 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="container p-4 ">
         <div>
           <label htmlFor="email" className="block mb-2 font-bold">
             Email
@@ -97,6 +99,7 @@ const LoginForm: React.FC = () => {
             id="email"
             type="email"
             {...register('email', { required: 'Email is required' })}
+            pattern='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
             className="w-full px-3 py-2 border rounded"
           />
           {errors.email && <span className="text-red-500">{errors.email.message}</span>}
@@ -122,6 +125,10 @@ const LoginForm: React.FC = () => {
         >
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
+
+        <div className='my-2'>
+          Forgot Password? <Link href="/forgot-password" className="hover:text-blue-600">Reset Password</Link>
+        </div>
 
 
       <div className="grid grid-cols-2 gap-2 items-center mx-auto  space-y-2">
